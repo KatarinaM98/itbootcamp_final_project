@@ -76,18 +76,15 @@ public class LoginTests extends BaseTest {
         loginPage.openLoginPage();
         loginPage.login("admin@admin.com", "12345");
         driver.manage().window().maximize();
-        /*
-        opcija logoutButton.click nije htela da radi kada taj element pokušam da getujem sa HomePage stranice, pa sam iz
-        tog razloga ovde ubacija Web element.
-         */
+
 
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
         driver.manage().window().maximize();
 
-        WebElement logoutButton = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]"));
-        Assert.assertTrue(logoutButton.isDisplayed());
+       // WebElement logoutButton = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]"));
+        Assert.assertTrue(homePage.getLogoutButton().isDisplayed());
 
-        logoutButton.click();
+      homePage.logout();
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/login"));
