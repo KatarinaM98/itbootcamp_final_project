@@ -27,7 +27,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "D:\\driver chrome\\driver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\driver chrome\\chromedriver.exe");
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         loginPage = new LoginPage(driver, driverWait);
