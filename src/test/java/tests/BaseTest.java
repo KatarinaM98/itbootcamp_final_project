@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
-import Pages.BasePage;
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.SignupPage;
+import pages.BasePage;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.SignupPage;
 import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import java.security.Signature;
 import java.time.Duration;
 
 public abstract class BaseTest {
@@ -28,7 +27,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "D:\\driver chromechrome\\driver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\driver chrome\\driver.exe");
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         loginPage = new LoginPage(driver, driverWait);
