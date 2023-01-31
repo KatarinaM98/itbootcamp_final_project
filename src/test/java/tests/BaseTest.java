@@ -31,6 +31,8 @@ public abstract class BaseTest {
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         loginPage = new LoginPage(driver, driverWait);
+        signupPage = new SignupPage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
     }
 
     @BeforeMethod
