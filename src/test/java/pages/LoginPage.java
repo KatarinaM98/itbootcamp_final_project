@@ -20,11 +20,10 @@ public class LoginPage extends BasePage{
     //mozda to drugo p
     ////*[@id="app"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li
      @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
-
      private WebElement message;
 
-     //*[@id="app"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li
-     @FindBy(xpath = "")
+
+     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
      private WebElement message2; 
 
 
