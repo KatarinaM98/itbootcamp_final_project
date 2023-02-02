@@ -1,7 +1,7 @@
 package tests;
 
 import com.github.javafaker.Faker;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
@@ -47,6 +47,7 @@ public class AdminCitiesTests extends BaseTest {
 
     }
 
+    //todo Zameni Thread.sleep sa waiterom
     @Test (dependsOnMethods = { "test2_Create_new_city" })
     public void test3_Edit_city() {
         driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
@@ -56,7 +57,7 @@ public class AdminCitiesTests extends BaseTest {
 //        adminCities.openCitiesPage();
         //driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]/span/i")));
         try {
-            Thread.sleep(2500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -102,20 +103,44 @@ public class AdminCitiesTests extends BaseTest {
         //driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[6]/div/div/div[2]/button[2]/span")));
 
         try {
-            Thread.sleep(2500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         Assert.assertEquals(adminCities.getSearchText().getAttribute("value"), adminCities.getSearchedCityInTable().getText());
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         adminCities.deleteCity();
 
-        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]/ul/li")));
+        //driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]/ul/li")));
 
-        Assert.assertEquals("Not found", adminCities.getMessage2().getText());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        Assert.assertEquals("Deleted successfully", adminCities.getMessage2().getText());
 
     }
 
+//    @Test
+//    public void testtest() {
+//        loginPage.openLoginPage();
+//        loginPage.login("admin@admin.com", "12345");
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        adminCities.openCitiesPage();
+//        adminCities.deleteCity();
+//    }
 
 
 

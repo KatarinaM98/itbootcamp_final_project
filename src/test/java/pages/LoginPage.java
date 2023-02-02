@@ -15,7 +15,9 @@ public class LoginPage extends BasePage{
     private WebElement password;
 
     @FindBy(xpath = "/html/body/div/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button/span")
+
     private WebElement loginButton;
+//
 
     //mozda to drugo p
     ////*[@id="app"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li
@@ -55,5 +57,9 @@ public class LoginPage extends BasePage{
 
     public WebElement getMessage() {
         return message;
+    }
+
+    public WebElement getLoginButton() {
+        return loginButton;
     }
 }
