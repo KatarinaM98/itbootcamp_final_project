@@ -22,6 +22,15 @@ public class AuthRoutesTests extends BaseTest{
         Assert.assertTrue(actualLink.contains("/login"));
     }
 
+
+
+    @Test
+    public void Test2_Forbids_visits_to_profile_url_if_not (){
+        driver.navigate().to("https://vue-demo.daniel-avellaneda.com/profile");
+        driverWait.until(ExpectedConditions.urlContains("/profile"));
+        String actualLink = driver.getCurrentUrl();
+        Assert.assertTrue(actualLink.contains("/login"));
+    }
     @AfterMethod
     public void afterMethod() {
         List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
