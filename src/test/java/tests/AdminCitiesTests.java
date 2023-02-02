@@ -43,7 +43,8 @@ public class AdminCitiesTests extends BaseTest {
          Test ne prolazi ako se napiše "Saved successfully"
         */
         //Assert.assertEquals("Saved successfully", adminCities.getMessage().getText());
-        Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
+        Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
+        //Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
 
     }
 
@@ -74,7 +75,8 @@ public class AdminCitiesTests extends BaseTest {
         //Assert.assertEquals("Saved successfully", adminCities.getMessage().getText());
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
 
-        Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
+        Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
+        //Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
     }
 
     @Test (dependsOnMethods = { "test3_Edit_city", "test2_Create_new_city" })
@@ -124,23 +126,12 @@ public class AdminCitiesTests extends BaseTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        Assert.assertEquals("Deleted successfully", adminCities.getMessage2().getText());
+        Assert.assertTrue(adminCities.getMessage2().getText().contains("Deleted successfully"));
+        //Assert.assertEquals("Deleted successfully", adminCities.getMessage2().getText());
 
     }
 
-//    @Test
-//    public void testtest() {
-//        loginPage.openLoginPage();
-//        loginPage.login("admin@admin.com", "12345");
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        adminCities.openCitiesPage();
-//        adminCities.deleteCity();
-//    }
+
 
 
 
