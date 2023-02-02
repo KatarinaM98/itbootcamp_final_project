@@ -43,12 +43,11 @@ public class AdminCities extends BasePage {
     @FindBy(xpath = "//*[@id=\"delete\"]/span/i")
     private WebElement delete;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[6]/div/div")
-    private WebElement deleteDialog;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[2]/button[2]/span")
+    private WebElement deleteDialogButton;
     //*[@id="app"]/div[6]
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[2]/button[2]")
-    private WebElement delete2;
+
 
 
 
@@ -103,6 +102,11 @@ public class AdminCities extends BasePage {
 
     public void deleteCity () {
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         delete.click();
         //Ako se stavi "+-edited" onda test 4 fejluje jer ne može da pretražuje "+-" karaktere
         try {
@@ -111,9 +115,12 @@ public class AdminCities extends BasePage {
             throw new RuntimeException(e);
         }
         // driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[6]/div/div/div[2]/button[2]/span")));
-        delete2.click();
-
-
+        deleteDialogButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
