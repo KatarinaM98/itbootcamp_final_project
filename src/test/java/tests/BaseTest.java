@@ -1,7 +1,7 @@
 package tests;
 
+import org.testng.annotations.AfterClass;
 import pages.*;
-import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +20,7 @@ public abstract class BaseTest {
     protected HomePage homePage;
     protected AdminCities adminCities;
 
+
     protected static final String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
     @BeforeClass
@@ -31,6 +32,7 @@ public abstract class BaseTest {
         signupPage = new SignupPage(driver, driverWait);
         homePage = new HomePage(driver, driverWait);
         adminCities = new AdminCities(driver, driverWait);
+        driver.manage().window().maximize();
     }
 
     @BeforeMethod
@@ -38,7 +40,7 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
     }
 
-    @AfterClass
+    @AfterClass // moras koristiti testNG anotacije, samo da vidim pom
     public void afterClass(){
         driver.quit();
     }
