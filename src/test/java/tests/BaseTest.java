@@ -40,7 +40,7 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
     }
 
-    @AfterClass // moras koristiti testNG anotacije, samo da vidim pom
+    @AfterClass 
     public void afterClass(){
         driver.quit();
     }
