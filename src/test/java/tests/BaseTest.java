@@ -1,9 +1,6 @@
 package tests;
 
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SignupPage;
+import pages.*;
 import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,8 +17,8 @@ public abstract class BaseTest {
 
     protected SignupPage signupPage;
     protected BasePage basePage;
-
     protected HomePage homePage;
+    protected AdminCities adminCities;
 
     protected static final String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
@@ -33,6 +30,7 @@ public abstract class BaseTest {
         loginPage = new LoginPage(driver, driverWait);
         signupPage = new SignupPage(driver, driverWait);
         homePage = new HomePage(driver, driverWait);
+        adminCities = new AdminCities(driver, driverWait);
     }
 
     @BeforeMethod
