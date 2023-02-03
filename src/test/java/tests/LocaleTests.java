@@ -18,7 +18,7 @@ public class LocaleTests extends BaseTest{
     }
 
     @Test
-    public void test1_Set_locale_to_EN() {
+    public void test2_Set_locale_to_EN() {
         homePage.changeLanguage("EN");
 
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")));
@@ -26,5 +26,7 @@ public class LocaleTests extends BaseTest{
         Assert.assertEquals("Landing", homePage.getHeaderTextES().getText());
 
     }
+
+
 
 }
