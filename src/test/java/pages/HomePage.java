@@ -34,6 +34,24 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/button/span")
     private WebElement languageButton;
 
+    @FindBy(xpath = "//*[@id=\"list-item-75\"]/div")
+    private WebElement languageES;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement headerTextES;
+
+    @FindBy(xpath = "//*[@id=\"list-item-73\"]/div")
+   private WebElement languageEN;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement headerTextEN;
+
+
+  @FindBy(xpath = "//*[@id=\"list-item-77\"]/div")
+   private WebElement languageFR;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement headerTextFR;
 
 
 
@@ -50,10 +68,22 @@ public class HomePage extends BasePage {
     driver.get("https://vue-demo.daniel-avellaneda.com/home");
     }
 
-    public void changeLanguage() {
-        WebElement selectCategory = driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div"));
-        Select category = new Select(selectCategory);
-        category.selectByVisibleText("ES");
+    public void changeLanguage(String language) {
+        languageButton.click();
+//        WebElement selectCategory = driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div"));
+//        Select category = new Select(selectCategory);
+//        category.selectByVisibleText(language);
+
+//        languageES.click();
+       if (language.equals("ES")) {
+           languageES.click();
+       } else if (language.equals("EN")) {
+           languageEN.click();
+       } else if (language.equals("FR")) {
+           languageFR.click();
+       } else {
+           System.out.println("Nevalidan unos");
+       }
 
 
 
@@ -69,7 +99,15 @@ public class HomePage extends BasePage {
         return signUpMessage;
     }
 
+    public WebElement getHeaderTextES() {
+        return headerTextES;
+    }
 
+    public WebElement getHeaderTextEN() {
+        return headerTextEN;
+    }
 
-
+    public WebElement getHeaderTextFR() {
+        return headerTextFR;
+    }
 }
