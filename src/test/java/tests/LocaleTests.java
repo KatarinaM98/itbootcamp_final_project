@@ -27,6 +27,16 @@ public class LocaleTests extends BaseTest{
 
     }
 
+    @Test
+    public void test3_Set_locale_to_FR() {
+        homePage.changeLanguage("FR");
+
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")));
+
+        Assert.assertEquals("Page d'atterrissage", homePage.getHeaderTextES().getText());
+
+    }
+
 
 
 }
