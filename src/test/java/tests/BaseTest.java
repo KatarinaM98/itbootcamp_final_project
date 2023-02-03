@@ -20,6 +20,8 @@ public abstract class BaseTest {
     protected HomePage homePage;
     protected AdminCities adminCities;
 
+    protected ProfilePage profilePage;
+
 
     protected static final String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
@@ -32,6 +34,7 @@ public abstract class BaseTest {
         signupPage = new SignupPage(driver, driverWait);
         homePage = new HomePage(driver, driverWait);
         adminCities = new AdminCities(driver, driverWait);
+        profilePage = new ProfilePage(driver, driverWait);
         driver.manage().window().maximize();
     }
 
