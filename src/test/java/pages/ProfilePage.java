@@ -143,4 +143,32 @@ public class ProfilePage extends BasePage {
     public WebElement getMessageSaved() {
         return messageSaved;
     }
+
+    public WebElement getChangePasswordButton() {
+        return changePasswordButton;
+    }
+
+    public WebElement getName() {
+        return name;
+    }
+
+    public WebElement getPhone() {
+        return phone;
+    }
+
+    public WebElement getSelectCityEnterText() {
+        return selectCityEnterText;
+    }
+
+    public WebElement getCountry() {
+        return country;
+    }
+
+    public WebElement getUrlTwitter() {
+        return urlTwitter;
+    }
+
+    public WebElement getUrlGitHub() {
+        return urlGitHub;
+    }
 }
