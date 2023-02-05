@@ -140,6 +140,7 @@ public class ProfilePage extends BasePage {
 
     }
 
-
-
+    public WebElement getMessageSaved() {
+        return messageSaved;
+    }
 }
