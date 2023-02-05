@@ -18,18 +18,42 @@ public class ProfileTests extends BaseTest {
         //loginPage.openLoginPage();
         //privremeno je blokiran admin nalog, pa ću privremeno koristiti logovanje sa drugog naloga
 //        loginPage.login("admin@admin.com", "12345");
-        //loginPage.login("ana@ana.com", "12345");
+        //loginPage.login("admin@admin.com", "12345");
         Faker faker = new Faker();
         signupPage.openSignupPage();
-        signupPage.signup("sdasdsa", faker.internet().emailAddress(), "12345", "12345");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        signupPage.signup(faker.name().firstName(), faker.internet().emailAddress(), "12345", "12345");
+       driverWait.until(ExpectedConditions.urlContains("/home"));
         profilePage.openProfilePage();
+
         driverWait.until(ExpectedConditions.urlContains("/profile"));
+
         profilePage.changeProfile();
+
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
+
+        Assert.assertEquals("Profile saved successfuly", profilePage.getMessageSaved().getText());
+
+
+        String typeAttributePass = profilePage.getName().getAttribute("value");
+        Assert.assertEquals(typeAttributePass, profilePage.getName().getText());
+
+        String typeAttributePass2 = profilePage.getPhone().getAttribute("value");
+        Assert.assertEquals(typeAttributePass2, profilePage.getPhone().getText());
+
+        String typeAttributePass3 = profilePage.getCountry().getAttribute("value");
+        Assert.assertEquals(typeAttributePass3, profilePage.getCountry().getText());
+
+        String typeAttributePass4 = profilePage.getSelectCityEnterText().getAttribute("value");
+        Assert.assertEquals(typeAttributePass4, profilePage.getSelectCityEnterText().getText());
+
+        String typeAttributePass5 = profilePage.getUrlTwitter().getAttribute("value");
+        Assert.assertEquals(typeAttributePass5, profilePage.getUrlTwitter().getText());
+
+        String typeAttributePass6 = profilePage.getUrlGitHub().getAttribute("value");
+        Assert.assertEquals(typeAttributePass6, profilePage.getUrlGitHub().getText());
+
+
+
 
 
     }
