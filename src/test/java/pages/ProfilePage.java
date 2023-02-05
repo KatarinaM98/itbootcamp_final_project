@@ -135,6 +135,7 @@ public class ProfilePage extends BasePage {
 //        category.selectByVisibleText(language);
 
         saveChangeButton.click();
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
 
 
 
