@@ -40,17 +40,26 @@ public class ProfilePage extends BasePage {
     private WebElement phone;
 
 
-    @FindBy(name = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[4]/span/div/div/div[1]/div[1]/div[2]/div/i")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[4]/span/div/div/div[1]/div[1]/div[1]/div")
     private WebElement selectCityButton;
 
-    @FindBy(name = "//*[@id=\"list-146\"]")
+    @FindBy(xpath = "//*[@id=\"list-146\"]")
     private WebElement selectCity;
 
     //*[@id="city"]
 
-    @FindBy(name = "//*[@id=\"city\"]")
+    @FindBy(xpath = "//*[@id=\"city\"]")
     private WebElement selectCityEnterText;
 
+    //int random = (int) (Math.random() * ((5 - 1) + 1));
+
+
+    @FindBy(xpath = "//*[@id=\"list-item-202-0\"]/div/div")
+    private WebElement listItem;
+
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[4]/span/div/div/div[1]/div[1]/div[1]/div/button")
+    private WebElement clearListButtonX;
 
     @FindBy(id = "country")
     private WebElement country;
@@ -60,6 +69,15 @@ public class ProfilePage extends BasePage {
 
     @FindBy(id = "urlGitHub")
     private WebElement urlGitHub;
+
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[8]/button/span")
+    private WebElement saveChangeButton;
+
+
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
+    private WebElement messageSaved;
 
 
     public ProfilePage(WebDriver driver, WebDriverWait driverWait) {
@@ -86,18 +104,37 @@ public class ProfilePage extends BasePage {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"updatePassword\"]/span")));
         saveButton.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
+        name.click();
+        name.clear();
+        phone.clear();
+        country.clear();
+        urlTwitter.clear();
+        urlGitHub.clear();
         name.sendKeys(faker.name().firstName());
         phone.sendKeys(faker.phoneNumber().phoneNumber());
-        //selectCityButton.click();
-//        WebElement selectCategory = driver.findElement(By.xpath("//*[@id=\"list-146\"]"));
-//     Select category = new Select(selectCategory);
-        //ne radi selecr
-        //todo nadji način da selektuješ grad
-        selectCityEnterText.click();
 
-    // int random = (int) (Math.random() * ((5 - 1) + 1));
-       //category.selectByIndex(random);
+        //Ne mogu da promenim city ni sa selectom, ni sa -click().
 
+        country.sendKeys(faker.address().country());
+
+        urlTwitter.sendKeys("https://twitter.com/" + faker.name().username());
+
+        urlGitHub.sendKeys("https://github.com/" + faker.name().username());
+
+        //clearListButtonX.click();
+        selectCityEnterText.sendKeys("New York");
+
+       // selectCityButton.click();
+
+
+        //listItem.click();
+
+
+        //       WebElement selectCategory = driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div"));
+//        Select category = new Select(selectCategory);
+//        category.selectByVisibleText(language);
+
+        saveChangeButton.click();
 
 
 
