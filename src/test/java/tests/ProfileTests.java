@@ -16,9 +16,9 @@ public class ProfileTests extends BaseTest {
     public void test1_Edits_profile() {
 
         //loginPage.openLoginPage();
+      // loginPage.login("admin@admin.com", "12345");
         //privremeno je blokiran admin nalog, pa ću privremeno koristiti logovanje sa drugog naloga
-//        loginPage.login("admin@admin.com", "12345");
-        //loginPage.login("admin@admin.com", "12345");
+
         Faker faker = new Faker();
         signupPage.openSignupPage();
         signupPage.signup(faker.name().firstName(), faker.internet().emailAddress(), "12345", "12345");

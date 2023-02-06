@@ -46,6 +46,9 @@ public class ProfilePage extends BasePage {
     @FindBy(id = "phone")
     private WebElement phone;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[3]/span/div/div/div[1]/div[2]/div/button")
+    private WebElement phoneXbutton;
+
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[4]/span/div/div/div[1]/div[1]/div[1]/div")
     private WebElement selectCityButton;
@@ -111,12 +114,30 @@ public class ProfilePage extends BasePage {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"updatePassword\"]/span")));
         saveButton.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
-        name.click();
-        name.clear();
-        phone.clear();
-        country.clear();
-        urlTwitter.clear();
-        urlGitHub.clear();
+
+        //OVO ODKOMENTARIŠI KADA SE LOGOVANJE ZA ADMINA ODBLOKIRA, ZA SIGNUP JE VEĆ PRAZNO
+
+
+//        name.clear();
+//        phoneXbutton.click();
+//        clearListButtonX.click();
+//        for (int i = 0; i < 20; i++) {
+//            country.sendKeys(Keys.BACK_SPACE);
+//        }
+//
+//        for (int i = 0; i < 35; i++) {
+//            urlTwitter.sendKeys(Keys.BACK_SPACE);
+//        }
+//
+//        for (int i = 0; i < 35; i++) {
+//            urlGitHub.sendKeys(Keys.BACK_SPACE);
+//        }
+
+//        for (int i = 0; i < 20; i++) {
+//            name.sendKeys(Keys.BACK_SPACE);
+//      }
+
+
         name.sendKeys(faker.name().firstName());
         phone.sendKeys(faker.phoneNumber().phoneNumber());
 
@@ -128,15 +149,13 @@ public class ProfilePage extends BasePage {
 
         urlGitHub.sendKeys("https://github.com/" + faker.name().username());
 
-        //clearListButtonX.click();
-        selectCityEnterText.sendKeys("New York");
-        selectCityEnterText.sendKeys(Keys.ENTER);
+       selectCityEnterText.sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+//        selectCityEnterText.sendKeys("New York");
+//        selectCityEnterText.sendKeys(Keys.ENTER);
+
 
        // selectCityButton.click();
-
-
         //listItem.click();
-
 
         //       WebElement selectCategory = driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div"));
 //        Select category = new Select(selectCategory);
