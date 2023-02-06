@@ -11,6 +11,7 @@ public class AdminCitiesTests extends BaseTest {
     @Test
     public void test1_Visits_the_admin_cities_page_and_list_cities() {
         loginPage.openLoginPage();
+
         loginPage.login("admin@admin.com", "12345");
         try {
             Thread.sleep(5000);
@@ -119,13 +120,9 @@ public class AdminCitiesTests extends BaseTest {
 
         adminCities.deleteCity();
 
-        //driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]/ul/li")));
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         Assert.assertTrue(adminCities.getMessage2().getText().contains("Deleted successfully"));
         //Assert.assertEquals("Deleted successfully", adminCities.getMessage2().getText());
 
