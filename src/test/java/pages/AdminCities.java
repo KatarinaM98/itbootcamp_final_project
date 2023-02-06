@@ -34,6 +34,11 @@ public class AdminCities extends BasePage {
     @FindBy(id = "search")
     private WebElement searchText;
 
+
+    @FindBy(xpath = "//*[@id=\"edit\"]")
+    private WebElement forDriverWait_Search;
+
+
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[2]")
     private WebElement editedCityInTable;
 
@@ -42,6 +47,9 @@ public class AdminCities extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"delete\"]/span/i")
     private WebElement delete;
+
+
+
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[2]/button[2]")
     private WebElement deleteDialogButton;
@@ -80,7 +88,7 @@ public class AdminCities extends BasePage {
     }
 
     public void editCity () {
-
+driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]/span/i")));
         edit.click();
         //Ako se stavi "+-edited" onda test 4 fejluje jer ne može da pretražuje "+-" karaktere
         cityName.sendKeys(" edited");
@@ -91,22 +99,15 @@ public class AdminCities extends BasePage {
     public void searchCity () {
 
         searchText.sendKeys(editedCityInTable.getText());
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]")));
+
 
 
     }
 
     public void deleteCity () {
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"delete\"]/span/i")));
         delete.click();
         //Ako se stavi "+-edited" onda test 4 fejluje jer ne može da pretražuje "+-" karaktere
 

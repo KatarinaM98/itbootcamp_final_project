@@ -13,11 +13,7 @@ public class AdminCitiesTests extends BaseTest {
         loginPage.openLoginPage();
 
         loginPage.login("admin@admin.com", "12345");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+       driverWait.until(ExpectedConditions.urlContains("/home"));
         adminCities.openCitiesPage();
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/admin/cities"));
@@ -58,11 +54,7 @@ public class AdminCitiesTests extends BaseTest {
 //        driverWait.until(ExpectedConditions.urlContains("/home"));
 //        adminCities.openCitiesPage();
         //driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]/span/i")));
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
         adminCities.editCity();
 
         /*
@@ -83,11 +75,7 @@ public class AdminCitiesTests extends BaseTest {
     @Test (dependsOnMethods = { "test3_Edit_city", "test2_Create_new_city" })
     public void test4_Search_city() {
         driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
         //Ako se stavi "+-edited" onda test 4 fejluje jer ne može da pretražuje "+-" karaktere --- PRIJAVITI BUG
         adminCities.searchCity();
         Assert.assertEquals(adminCities.getEditedCityInTable().getText(), adminCities.getSearchedCityInTable().getText());
@@ -96,27 +84,15 @@ public class AdminCitiesTests extends BaseTest {
     @Test (dependsOnMethods = { "test3_Edit_city", "test2_Create_new_city", "test4_Search_city" })
     public void test5_Delete_city() {
         driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
 
         adminCities.searchCity();
-        //driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[6]/div/div/div[2]/button[2]/span")));
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
+
         Assert.assertEquals(adminCities.getSearchText().getAttribute("value"), adminCities.getSearchedCityInTable().getText());
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
 
         adminCities.deleteCity();
 

@@ -36,7 +36,9 @@ public class ProfileTests extends BaseTest {
                 "CLOSE");
 
 
-        Assert.assertEquals(profilePage.getName().getAttribute("value"), profilePage.getName().getText());
+        String nameAssert = profilePage.getName().getText();
+        Assert.assertEquals(profilePage.getName().getAttribute("value"), nameAssert);
+
 
         String typeAttributePass2 = profilePage.getPhone().getAttribute("value");
         Assert.assertEquals(typeAttributePass2, profilePage.getPhone().getText());
