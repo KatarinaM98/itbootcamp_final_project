@@ -29,14 +29,15 @@ public class ProfileTests extends BaseTest {
 
         profilePage.changeProfile();
 
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
-
-        Assert.assertEquals("Profile saved successfuly", profilePage.getMessageSaved().getText());
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
 
 
-        String typeAttributePass = profilePage.getName().getAttribute("value");
-        Assert.assertEquals(typeAttributePass, profilePage.getName().getText());
+        Assert.assertEquals(profilePage.getMessageSaved().getText(), "Profile saved successfuly\n" +
+                "CLOSE");
 
+
+        Assert.assertEquals(profilePage.getName().getAttribute("value"), profilePage.getName().getText());
+        
         String typeAttributePass2 = profilePage.getPhone().getAttribute("value");
         Assert.assertEquals(typeAttributePass2, profilePage.getPhone().getText());
 

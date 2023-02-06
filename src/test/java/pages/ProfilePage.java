@@ -2,6 +2,7 @@ package pages;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
 
+import java.security.Key;
 import java.util.Random;
 
 public class ProfilePage extends BasePage {
@@ -33,8 +35,13 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
     private WebElement changedPasswordMessage;
 
-    @FindBy(id = "name")
+    @FindBy(xpath = "//*[@id=\"name\"]")
     private WebElement name;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[2]")
+    private WebElement name2;
+
+
 
     @FindBy(id = "phone")
     private WebElement phone;
@@ -76,7 +83,7 @@ public class ProfilePage extends BasePage {
 
 
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")
     private WebElement messageSaved;
 
 
@@ -123,6 +130,7 @@ public class ProfilePage extends BasePage {
 
         //clearListButtonX.click();
         selectCityEnterText.sendKeys("New York");
+        selectCityEnterText.sendKeys(Keys.ENTER);
 
        // selectCityButton.click();
 
@@ -135,7 +143,7 @@ public class ProfilePage extends BasePage {
 //        category.selectByVisibleText(language);
 
         saveChangeButton.click();
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
 
 
 
@@ -171,5 +179,9 @@ public class ProfilePage extends BasePage {
 
     public WebElement getUrlGitHub() {
         return urlGitHub;
+    }
+
+    public WebElement getName2() {
+        return name2;
     }
 }
