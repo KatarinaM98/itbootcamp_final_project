@@ -1,9 +1,11 @@
 package pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
@@ -11,7 +13,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span")
     private WebElement logoutButton;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[3]/span")
     private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
@@ -42,6 +44,9 @@ public class HomePage extends BasePage {
         super(driver, driverWait);
     }
 
+    public void login() {
+        loginButton.click();
+    }
     public void logout() {
         logoutButton.click();
     }
@@ -61,6 +66,10 @@ public class HomePage extends BasePage {
         } else {
             System.out.println("Nevalidan unos");
         }
+    }
+
+    public void driverWaitForHeading() {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")));
     }
 
     public WebElement getLogoutButton() {
