@@ -48,7 +48,7 @@ public class SignupTests extends BaseTest {
 
     @Test
     public void test5_SIGNUP() {
-        signupPage.signup("John Doe", "johndoe@gmail.com", "stolica", "stolica");
+        signupPage.signup("John Doe", "johndoe1@gmail.com", "stolica", "stolica");
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]")));
         Assert.assertEquals("IMPORTANT: Verify your account", homePage.getSignUpMessage().getText());
         signupPage.closeMessage();
