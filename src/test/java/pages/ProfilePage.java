@@ -1,6 +1,6 @@
 package pages;
 
-import com.github.javafaker.Faker;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,12 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class ProfilePage extends BasePage {
 
-
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")
-    private WebElement myProfileButton ;
+    private WebElement myProfileButton;
 
     @FindBy(xpath = "//*[@id=\"name\"]")
     private WebElement name;
@@ -54,20 +52,18 @@ public class ProfilePage extends BasePage {
 
 
     public ProfilePage(WebDriver driver, WebDriverWait driverWait) {
-
         super(driver, driverWait);
-
     }
 
-    public void openProfileChangePage () {
+
+    public void openProfileChangePage() {
         driverWait.until(ExpectedConditions.urlContains("/home"));
         myProfileButton.click();
         driverWait.until(ExpectedConditions.urlContains("/profile"));
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
-
     }
 
-    public void clearText () {
+    public void clearText() {
         myProfileButton.click();
         driverWait.until(ExpectedConditions.urlContains("/profile"));
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
@@ -77,34 +73,30 @@ public class ProfilePage extends BasePage {
         urlTwitter.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
         urlGitHub.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
         this.name.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
-
     }
 
-    public void changeProfile (String newPassword, String name, String phone, String country, String city, String twitter, String gitHub) {
-
+    public void changeProfile(String newPassword, String name, String phone, String country, String city, String twitter, String gitHub) {
         this.name.sendKeys(name);
         this.phone.sendKeys(phone);
         this.country.sendKeys(country);
         urlTwitter.sendKeys(twitter);
         urlGitHub.sendKeys(gitHub);
-       this.city.sendKeys(city, Keys.ENTER);
+        this.city.sendKeys(city, Keys.ENTER);
         saveChangeButton.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
-
     }
 
-    public void driverWaitForMyProfileButtonPresence () {
+    public void driverWaitForMyProfileButtonPresence() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")));
     }
 
-    public void driverWaitForMessage () {
+    public void driverWaitForMessage() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
     }
+
     public WebElement getMessageSaved() {
         return messageSaved;
     }
-
-
 
     public WebElement getName() {
         return name;
@@ -129,6 +121,4 @@ public class ProfilePage extends BasePage {
     public WebElement getUrlGitHub() {
         return urlGitHub;
     }
-
-
 }

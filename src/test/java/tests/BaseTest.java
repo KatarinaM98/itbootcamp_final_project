@@ -11,21 +11,19 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
+
 public abstract class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait driverWait;
-
     protected Faker faker;
     protected LoginPage loginPage;
-
     protected SignupPage signupPage;
     protected BasePage basePage;
     protected HomePage homePage;
     protected AdminCities adminCities;
     protected ProfilePage profilePage;
-
-
     protected static final String baseUrl = "https://vue-demo.daniel-avellaneda.com";
+
 
     @BeforeClass
     public void beforeClass() {
@@ -38,18 +36,17 @@ public abstract class BaseTest {
         profilePage = new ProfilePage(driver, driverWait);
         driver.manage().window().maximize();
         faker = new Faker();
-
     }
 
+
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         driver.get(baseUrl);
     }
 
-    @AfterClass 
-    public void afterClass(){
+
+    @AfterClass
+    public void afterClass() {
         driver.quit();
     }
-
-
 }

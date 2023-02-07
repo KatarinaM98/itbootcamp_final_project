@@ -1,10 +1,8 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -16,12 +14,14 @@ public class AdminCitiesTests extends BaseTest {
 
     private String city;
 
+
     @BeforeClass
     @Override
     public void beforeClass() {
         super.beforeClass();
         city = faker.address().city();
     }
+
 
     @BeforeMethod
     @Override
@@ -33,9 +33,9 @@ public class AdminCitiesTests extends BaseTest {
         adminCities.openCitiesPage();
     }
 
+
     @Test
     public void visitsAdminCitiesPageAndListCities() {
-
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/admin/cities"));
         driver.manage().window().maximize();
@@ -45,7 +45,6 @@ public class AdminCitiesTests extends BaseTest {
 
     @Test
     public void createNewCity() {
-
         adminCities.addNewCity(city);
         adminCities.driverWaitForMessage();
         Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
@@ -73,6 +72,7 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(adminCities.getMessage2().getText().contains("Deleted successfully"));
     }
 
+
     @AfterMethod
     public void afterMethod() {
         List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
@@ -80,5 +80,4 @@ public class AdminCitiesTests extends BaseTest {
             logoutButton.get(0).click();
         }
     }
-
 }

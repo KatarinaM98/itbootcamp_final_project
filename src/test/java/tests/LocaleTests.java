@@ -3,7 +3,9 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LocaleTests extends BaseTest{
+
+public class LocaleTests extends BaseTest {
+
 
     @Test
     public void setLocaleToES() {
@@ -26,5 +28,4 @@ public class LocaleTests extends BaseTest{
         Assert.assertEquals("Page d'atterrissage", homePage.getHeaderText().getText());
 
     }
-
 }

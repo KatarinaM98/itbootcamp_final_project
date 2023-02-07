@@ -9,7 +9,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+
 public class SignupTests extends BaseTest {
+
 
     @BeforeMethod
     @Override
@@ -19,14 +21,15 @@ public class SignupTests extends BaseTest {
         signupPage.driverWaitForEmailFieldPresence();
     }
 
+
     @Test
-    public void visitsTheSignupPage(){
+    public void visitsTheSignupPage() {
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/signup"));
     }
 
     @Test
-    public void checksInputTypes(){
+    public void checksInputTypes() {
         String typeAttributeEmail = signupPage.getEmail().getAttribute("type");
         Assert.assertEquals(typeAttributeEmail, "email");
         String typeAttributePass = signupPage.getPassword().getAttribute("type");
@@ -52,6 +55,7 @@ public class SignupTests extends BaseTest {
         signupPage.closeMessage();
     }
 
+
     @AfterMethod
     public void afterMethod() {
         List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
@@ -59,5 +63,4 @@ public class SignupTests extends BaseTest {
             logoutButton.get(0).click();
         }
     }
-
 }

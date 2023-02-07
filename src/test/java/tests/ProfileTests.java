@@ -1,15 +1,15 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.util.List;
+
 
 public class ProfileTests extends BaseTest {
 
@@ -20,6 +20,7 @@ public class ProfileTests extends BaseTest {
     private String country;
     private String twitter;
     private String gitHub;
+
 
     @BeforeClass
     @Override
@@ -34,6 +35,7 @@ public class ProfileTests extends BaseTest {
         gitHub = "https://github.com/" + faker.name().username().toLowerCase();
     }
 
+
     @BeforeMethod
     @Override
     public void beforeMethod() {
@@ -44,9 +46,10 @@ public class ProfileTests extends BaseTest {
         profilePage.openProfileChangePage();
     }
 
+
     @Test
     public void editProfile() {
-       profilePage.clearText();
+        profilePage.clearText();
         profilePage.changeProfile(newPassword, name, phone, country, city, twitter, gitHub);
         profilePage.driverWaitForMessage();
         Assert.assertTrue(profilePage.getMessageSaved().getText().contains("Profile saved successfuly"));
@@ -56,8 +59,8 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(profilePage.getSelectCityEnterText().getAttribute("value"), city);
         Assert.assertEquals(profilePage.getUrlTwitter().getAttribute("value"), twitter);
         Assert.assertEquals(profilePage.getUrlGitHub().getAttribute("value"), gitHub);
-
     }
+
 
     @AfterMethod
     public void afterMethod() {
@@ -66,6 +69,4 @@ public class ProfileTests extends BaseTest {
             logoutButton.get(0).click();
         }
     }
-
-
 }

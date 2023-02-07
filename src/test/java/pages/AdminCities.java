@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,7 @@ public class AdminCities extends BasePage {
     private WebElement citiesOption;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]/span")
-   private WebElement logoutButton;
+    private WebElement logoutButton;
     @FindBy(xpath = "/html/body/div/div[1]/main/div/div[2]/div/div[1]/div[1]/div[3]/form/div[1]/button/span")
     private WebElement newItemButton;
     @FindBy(id = "name")
@@ -47,27 +46,27 @@ public class AdminCities extends BasePage {
     private WebElement message2;
 
 
-    public AdminCities (WebDriver driver, WebDriverWait driverWait) {
+    public AdminCities(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
 
-    public void openCitiesPage () {
+
+    public void openCitiesPage() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]/span")));
         adminOption.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.className("btnAdminCities")));
-       citiesOption.click();
+        citiesOption.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"search\"]")));
     }
 
-
-    public void addNewCity (String city) {
+    public void addNewCity(String city) {
         newItemButton.click();
         cityName.sendKeys(city);
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.className("btnSave")));
         saveButton.click();
     }
 
-    public void editCity () {
+    public void editCity() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]/span/i")));
         edit.click();
         cityName.sendKeys(" edited");
@@ -75,33 +74,31 @@ public class AdminCities extends BasePage {
         saveButton.click();
     }
 
-    public void searchCity () {
+    public void searchCity() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
         searchText.sendKeys(editedCityInTable.getText());
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]")));
     }
 
-    public void deleteCity () {
+    public void deleteCity() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"delete\"]/span/i")));
         delete.click();
-         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > div.v-dialog__content.v-dialog__content--active > div > div > div.v-card__actions > button.v-btn.v-btn--text.theme--light.v-size--default.red--text.text--lighten3")));
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > div.v-dialog__content.v-dialog__content--active > div > div > div.v-card__actions > button.v-btn.v-btn--text.theme--light.v-size--default.red--text.text--lighten3")));
         deleteDialogButton.click();
     }
 
-    public void driverWaitForLogoutButtonPresence () {
+    public void driverWaitForLogoutButtonPresence() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]/span")));
 
     }
 
-
-    public void driverWaitForHomePage () {
+    public void driverWaitForHomePage() {
         driverWait.until(ExpectedConditions.urlContains("/home"));
-        }
-
-    public void driverWaitForMessage () {
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
     }
 
+    public void driverWaitForMessage() {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
+    }
 
 
     public WebElement getLogoutButton() {

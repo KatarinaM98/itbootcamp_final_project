@@ -7,10 +7,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-
 import java.util.List;
 
+
 public class AuthRoutesTests extends BaseTest {
+
 
     @Test
     public void forbidsVisitsToHomeUrlIfNotAuthenticated() {
@@ -36,7 +37,6 @@ public class AuthRoutesTests extends BaseTest {
         Assert.assertTrue(actualLink.contains("/login"));
     }
 
-
     @Test
     public void frbidsVisitsToAdminUsersUrlUfNotAuthenticated() {
         driver.navigate().to("https://vue-demo.daniel-avellaneda.com/admin/users");
@@ -53,6 +53,4 @@ public class AuthRoutesTests extends BaseTest {
             logoutButton.get(0).click();
         }
     }
-
-
 }

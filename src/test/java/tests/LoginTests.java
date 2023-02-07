@@ -1,6 +1,6 @@
 package tests;
 
-import com.github.javafaker.Faker;
+;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.openqa.selenium.By;
@@ -18,6 +18,7 @@ public class LoginTests extends BaseTest {
     private String email;
     private String password;
 
+
     @BeforeClass
     @Override
     public void beforeClass() {
@@ -25,6 +26,7 @@ public class LoginTests extends BaseTest {
         email = faker.internet().emailAddress();
         password = faker.internet().password();
     }
+
 
     @BeforeMethod
     @Override
@@ -34,15 +36,15 @@ public class LoginTests extends BaseTest {
         loginPage.driverWaitForEmailFieldPresence();
     }
 
+
     @Test
-    public void validUrl(){
+    public void validUrl() {
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/login"));
     }
 
-
     @Test
-    public void checksInputTypes(){
+    public void checksInputTypes() {
         String typeAttributeEmail = loginPage.getEmail().getAttribute("type");
         Assert.assertEquals(typeAttributeEmail, "email");
         String typeAttributePass = loginPage.getPassword().getAttribute("type");
@@ -50,22 +52,23 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-   public void displaysErrorsWhenUserDoesNotExist() {
+    public void displaysErrorsWhenUserDoesNotExist() {
         loginPage.login(email, password);
         loginPage.driverWaitForMessage();
         Assert.assertEquals("User does not exists", loginPage.getMessage().getText());
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/login"));
-   }
+    }
 
-   @Test
-    public void displaysErrorsWhenPasswordIsWrong() {;
-       loginPage.login("admin@admin.com", password);
-       loginPage.driverWaitForMessage();
-       Assert.assertEquals("Wrong password", loginPage.getMessage().getText());
-       String actualLink = driver.getCurrentUrl();
-       Assert.assertTrue(actualLink.contains("/login"));
-   }
+    @Test
+    public void displaysErrorsWhenPasswordIsWrong() {
+        ;
+        loginPage.login("admin@admin.com", password);
+        loginPage.driverWaitForMessage();
+        Assert.assertEquals("Wrong password", loginPage.getMessage().getText());
+        String actualLink = driver.getCurrentUrl();
+        Assert.assertTrue(actualLink.contains("/login"));
+    }
 
     @Test
     public void login() {
@@ -89,6 +92,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(actualLink2.contains("/login"));
     }
 
+
     @AfterMethod
     public void afterMethod() {
         List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
@@ -96,8 +100,4 @@ public class LoginTests extends BaseTest {
             logoutButton.get(0).click();
         }
     }
-
-
-
-
 }

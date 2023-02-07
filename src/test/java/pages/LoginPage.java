@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[3]")
     private WebElement loginButtonPage;
@@ -21,14 +21,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "/html/body/div/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button/span")
     private WebElement loginButton;
 
-     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
-     private WebElement message;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
+    private WebElement message;
 
     public LoginPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
         this.email.clear();
         this.password.clear();
@@ -37,40 +37,36 @@ public class LoginPage extends BasePage{
         loginButton.click();
     }
 
-    public void openLoginPage () {
+    public void openLoginPage() {
         loginButtonPage.click();
         driverWait.until(ExpectedConditions.urlContains("/login"));
     }
 
-    public void driverWaitForEmailFieldPresence () {
+    public void driverWaitForEmailFieldPresence() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
     }
 
-    public void driverWaitForMessage () {
+    public void driverWaitForMessage() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
     }
 
-    public void driverWaitForLogoutButtonPresence () {
+    public void driverWaitForLogoutButtonPresence() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
     }
 
     public WebElement getEmail() {
-
         return email;
     }
 
     public WebElement getPassword() {
-
         return password;
     }
 
     public WebElement getMessage() {
-
         return message;
     }
 
     public WebElement getLoginButton() {
-
         return loginButton;
     }
 }

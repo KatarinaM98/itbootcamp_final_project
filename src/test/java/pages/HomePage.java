@@ -19,10 +19,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
     private WebElement signUpMessage;
 
-    //When signed in:
-    @FindBy(xpath = "/html/body/div/div[1]/div/header/div/div[3]/button[1]")
-    private WebElement adminOption;
-
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/button/span")
     private WebElement languageButton;
 
@@ -35,7 +31,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"list-item-73\"]/div")
     private WebElement languageEN;
 
-
     @FindBy(xpath = "//*[@id=\"list-item-77\"]/div")
     private WebElement languageFR;
 
@@ -44,10 +39,12 @@ public class HomePage extends BasePage {
         super(driver, driverWait);
     }
 
+
     public void login() {
         loginButton.click();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button/span")));
     }
+
     public void logout() {
         logoutButton.click();
     }
@@ -72,7 +69,6 @@ public class HomePage extends BasePage {
     public void driverWaitForHeading() {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")));
     }
-
 
     public WebElement getLogoutButton() {
         return logoutButton;
