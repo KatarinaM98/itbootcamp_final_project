@@ -58,6 +58,14 @@ public class ProfilePage extends BasePage {
 
     }
 
+    public void openProfileChangePage () {
+        driverWait.until(ExpectedConditions.urlContains("/home"));
+        myProfileButton.click();
+        driverWait.until(ExpectedConditions.urlContains("/profile"));
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
+
+    }
+
     public void clearText () {
         driverWait.until(ExpectedConditions.urlContains("/home"));
         myProfileButton.click();
