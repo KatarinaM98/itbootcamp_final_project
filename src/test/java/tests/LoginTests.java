@@ -31,6 +31,7 @@ public class LoginTests extends BaseTest {
     public void beforeMethod() {
         super.beforeMethod();
         loginPage.openLoginPage();
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.name("//*[@id=\"app\"]/div[4]/div/div/div[3]/button")));
     }
 
     @Test
