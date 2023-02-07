@@ -40,6 +40,7 @@ public class ProfileTests extends BaseTest {
         super.beforeMethod();
         homePage.login();
         loginPage.login("admin@admin.com", "12345");
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")));
         profilePage.openProfileChangePage();
     }
 
@@ -47,6 +48,7 @@ public class ProfileTests extends BaseTest {
     public void test1_Edits_profile() {
        profilePage.clearText();
         profilePage.changeProfile(newPassword, name, phone, country, city, twitter, gitHub);
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
         Assert.assertTrue(profilePage.getMessageSaved().getText().contains("Profile saved successfuly"));
         Assert.assertEquals(profilePage.getName().getAttribute("value"), name);
         Assert.assertEquals(profilePage.getPhone().getAttribute("value"), phone);
