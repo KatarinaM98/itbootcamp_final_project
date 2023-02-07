@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasePage {
 
+
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")
     private WebElement myProfileButton ;
 
@@ -92,6 +93,13 @@ public class ProfilePage extends BasePage {
 
     }
 
+    public void driverWaitForMyProfileButtonPresence () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")));
+    }
+
+    public void driverWaitForMessage () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div")));
+    }
     public WebElement getMessageSaved() {
         return messageSaved;
     }

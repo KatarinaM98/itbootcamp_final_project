@@ -73,6 +73,7 @@ public class HomePage extends BasePage {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")));
     }
 
+
     public WebElement getLogoutButton() {
         return logoutButton;
     }

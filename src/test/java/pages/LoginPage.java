@@ -18,16 +18,11 @@ public class LoginPage extends BasePage{
     @FindBy(name = "password")
     private WebElement password;
 
-    //*[@id="app"]/div/div/header/div/div[3]/a[3]
     @FindBy(xpath = "/html/body/div/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button/span")
     private WebElement loginButton;
 
      @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
      private WebElement message;
-
-     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
-     private WebElement message2; 
-
 
     public LoginPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -45,6 +40,18 @@ public class LoginPage extends BasePage{
     public void openLoginPage () {
         loginButtonPage.click();
         driverWait.until(ExpectedConditions.urlContains("/login"));
+    }
+
+    public void driverWaitForEmailFieldPresence () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
+    }
+
+    public void driverWaitForMessage () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
+    }
+
+    public void driverWaitForLogoutButtonPresence () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
     }
 
     public WebElement getEmail() {

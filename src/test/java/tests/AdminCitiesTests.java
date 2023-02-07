@@ -39,7 +39,7 @@ public class AdminCitiesTests extends BaseTest {
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/admin/cities"));
         driver.manage().window().maximize();
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]/span")));
+        adminCities.driverWaitForLogoutButtonPresence();
         Assert.assertTrue(adminCities.getLogoutButton().isDisplayed());
     }
 

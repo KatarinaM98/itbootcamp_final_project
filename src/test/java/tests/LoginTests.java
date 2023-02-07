@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
     public void beforeMethod() {
         super.beforeMethod();
         loginPage.openLoginPage();
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
+        loginPage.driverWaitForEmailFieldPresence();
     }
 
     @Test
@@ -52,7 +52,7 @@ public class LoginTests extends BaseTest {
     @Test
    public void test3_Displays_errors_when_user_does_not_exist() {
         loginPage.login(email, password);
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
+        loginPage.driverWaitForMessage();
         Assert.assertEquals("User does not exists", loginPage.getMessage().getText());
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/login"));
@@ -61,7 +61,7 @@ public class LoginTests extends BaseTest {
    @Test
     public void test4_Displays_errors_when_password_is_wrong() {;
        loginPage.login("admin@admin.com", password);
-       driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
+       loginPage.driverWaitForMessage();
        Assert.assertEquals("Wrong password", loginPage.getMessage().getText());
        String actualLink = driver.getCurrentUrl();
        Assert.assertTrue(actualLink.contains("/login"));
@@ -78,7 +78,7 @@ public class LoginTests extends BaseTest {
     @Test
     public void test6_LOGOUT() {
         loginPage.login("admin@admin.com", "12345");
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
+        loginPage.driverWaitForLogoutButtonPresence();
         Assert.assertTrue(homePage.getLogoutButton().isDisplayed());
         homePage.logout();
         driverWait.until(ExpectedConditions.urlContains("/login"));

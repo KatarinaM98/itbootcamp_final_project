@@ -88,6 +88,10 @@ public class AdminCities extends BasePage {
         deleteDialogButton.click();
     }
 
+    public void driverWaitForLogoutButtonPresence () {
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]/span")));
+
+    }
 
 
     public void driverWaitForHomePage () {
