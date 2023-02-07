@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.testng.annotations.AfterClass;
 import pages.*;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,8 @@ import java.time.Duration;
 public abstract class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait driverWait;
+
+    protected Faker faker;
     protected LoginPage loginPage;
 
     protected SignupPage signupPage;
@@ -27,7 +30,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "D:\\driver chrome\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "D:\\driver chrome\\chromedriver.exe");
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         loginPage = new LoginPage(driver, driverWait);
@@ -36,6 +39,8 @@ public abstract class BaseTest {
         adminCities = new AdminCities(driver, driverWait);
         profilePage = new ProfilePage(driver, driverWait);
         driver.manage().window().maximize();
+        faker = new Faker();
+
     }
 
     @BeforeMethod
