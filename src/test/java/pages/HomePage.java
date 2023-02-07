@@ -46,6 +46,7 @@ public class HomePage extends BasePage {
 
     public void login() {
         loginButton.click();
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button/span")));
     }
     public void logout() {
         logoutButton.click();
