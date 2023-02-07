@@ -45,7 +45,7 @@ public class ProfileTests extends BaseTest {
     }
 
     @Test
-    public void test1_Edits_profile() {
+    public void editProfile() {
        profilePage.clearText();
         profilePage.changeProfile(newPassword, name, phone, country, city, twitter, gitHub);
         profilePage.driverWaitForMessage();

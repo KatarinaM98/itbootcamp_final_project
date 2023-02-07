@@ -34,7 +34,7 @@ public class AdminCitiesTests extends BaseTest {
     }
 
     @Test
-    public void test1_Visits_the_admin_cities_page_and_list_cities() {
+    public void visitsAdminCitiesPageAndListCities() {
 
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/admin/cities"));
@@ -44,7 +44,7 @@ public class AdminCitiesTests extends BaseTest {
     }
 
     @Test
-    public void test2_Create_new_city() {
+    public void createNewCity() {
 
         adminCities.addNewCity(city);
         adminCities.driverWaitForMessage();
@@ -52,20 +52,20 @@ public class AdminCitiesTests extends BaseTest {
     }
 
     @Test
-    public void test3_Edit_city() {
+    public void editCity() {
         adminCities.editCity();
         adminCities.driverWaitForMessage();
         Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
     }
 
     @Test
-    public void test4_Search_city() {
+    public void searchCity() {
         adminCities.searchCity();
         Assert.assertEquals(adminCities.getEditedCityInTable().getText(), adminCities.getSearchedCityInTable().getText());
     }
 
     @Test
-    public void test5_Delete_city() {
+    public void deleteCity() {
         adminCities.searchCity();
         Assert.assertEquals(adminCities.getSearchText().getAttribute("value"), adminCities.getSearchedCityInTable().getText());
         adminCities.deleteCity();

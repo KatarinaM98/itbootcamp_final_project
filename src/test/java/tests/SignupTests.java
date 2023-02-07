@@ -1,10 +1,8 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,13 +20,13 @@ public class SignupTests extends BaseTest {
     }
 
     @Test
-    public void test1_Visits_the_signup_page(){
+    public void visitsTheSignupPage(){
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/signup"));
     }
 
     @Test
-    public void test2_Checks_input_types(){
+    public void checksInputTypes(){
         String typeAttributeEmail = signupPage.getEmail().getAttribute("type");
         Assert.assertEquals(typeAttributeEmail, "email");
         String typeAttributePass = signupPage.getPassword().getAttribute("type");
@@ -38,7 +36,7 @@ public class SignupTests extends BaseTest {
     }
 
     @Test
-    public void test3_Displays_errors_when_user_does_not_exist() {
+    public void displaysErrorsWhenUserDoesNotExist() {
         signupPage.signup("Test Test", "admin@admin.com", "123654", "123654");
         signupPage.driverWaitForMessage();
         Assert.assertEquals("E-mail already exists", signupPage.getMessage().getText());
@@ -47,7 +45,7 @@ public class SignupTests extends BaseTest {
     }
 
     @Test
-    public void test5_SIGNUP() {
+    public void signup() {
         signupPage.signup("John Doe", "johndoe1@gmail.com", "stolica", "stolica");
         signupPage.driverWaitForVerificationMessage();
         Assert.assertEquals("IMPORTANT: Verify your account", homePage.getSignUpMessage().getText());

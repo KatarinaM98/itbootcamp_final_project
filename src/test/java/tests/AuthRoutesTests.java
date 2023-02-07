@@ -13,7 +13,7 @@ import java.util.List;
 public class AuthRoutesTests extends BaseTest {
 
     @Test
-    public void Test_1_Forbids_visits_to_home_url_if_not_authenticated() {
+    public void forbidsVisitsToHomeUrlIfNotAuthenticated() {
         driver.navigate().to("https://vue-demo.daniel-avellaneda.com/home");
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualLink = driver.getCurrentUrl();
@@ -21,7 +21,7 @@ public class AuthRoutesTests extends BaseTest {
     }
 
     @Test
-    public void Test2_Forbids_visits_to_profile_url_if_not() {
+    public void forbidsVisitsToProfileUrlIfNotAuthenticated() {
         driver.navigate().to("https://vue-demo.daniel-avellaneda.com/profile");
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualLink = driver.getCurrentUrl();
@@ -29,7 +29,7 @@ public class AuthRoutesTests extends BaseTest {
     }
 
     @Test
-    public void Test3_Forbids_visits_to_admin_cities_url_if_not_authenticated() {
+    public void forbidsVisitsToAdminCitiesUrlIfNotAuthenticated() {
         driver.navigate().to("https://vue-demo.daniel-avellaneda.com/admin/cities");
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualLink = driver.getCurrentUrl();
@@ -38,7 +38,7 @@ public class AuthRoutesTests extends BaseTest {
 
 
     @Test
-    public void Test4_Forbids_visits_to_admin_users_url_if_not_authenticated() {
+    public void frbidsVisitsToAdminUsersUrlUfNotAuthenticated() {
         driver.navigate().to("https://vue-demo.daniel-avellaneda.com/admin/users");
         driverWait.until(ExpectedConditions.urlContains("/login"));
         String actualLink = driver.getCurrentUrl();

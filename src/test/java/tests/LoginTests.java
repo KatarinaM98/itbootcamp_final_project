@@ -35,14 +35,14 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void test1_validUrl(){
+    public void validUrl(){
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/login"));
     }
 
 
     @Test
-    public void test2_Checks_input_types(){
+    public void checksInputTypes(){
         String typeAttributeEmail = loginPage.getEmail().getAttribute("type");
         Assert.assertEquals(typeAttributeEmail, "email");
         String typeAttributePass = loginPage.getPassword().getAttribute("type");
@@ -50,7 +50,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-   public void test3_Displays_errors_when_user_does_not_exist() {
+   public void displaysErrorsWhenUserDoesNotExist() {
         loginPage.login(email, password);
         loginPage.driverWaitForMessage();
         Assert.assertEquals("User does not exists", loginPage.getMessage().getText());
@@ -59,7 +59,7 @@ public class LoginTests extends BaseTest {
    }
 
    @Test
-    public void test4_Displays_errors_when_password_is_wrong() {;
+    public void displaysErrorsWhenPasswordIsWrong() {;
        loginPage.login("admin@admin.com", password);
        loginPage.driverWaitForMessage();
        Assert.assertEquals("Wrong password", loginPage.getMessage().getText());
@@ -68,7 +68,7 @@ public class LoginTests extends BaseTest {
    }
 
     @Test
-    public void test5_LOGIN() {
+    public void login() {
         loginPage.login("admin@admin.com", "12345");
         driverWait.until(ExpectedConditions.urlContains("/home"));
         String actualLink = driver.getCurrentUrl();
@@ -76,7 +76,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void test6_LOGOUT() {
+    public void logout() {
         loginPage.login("admin@admin.com", "12345");
         loginPage.driverWaitForLogoutButtonPresence();
         Assert.assertTrue(homePage.getLogoutButton().isDisplayed());
