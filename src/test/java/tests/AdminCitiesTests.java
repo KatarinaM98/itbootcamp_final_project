@@ -1,20 +1,41 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class AdminCitiesTests extends BaseTest {
 
+    private String city;
+
+    @BeforeClass
+    @Override
+    public void beforeClass() {
+        super.beforeClass();
+        city = faker.address().city();
+    }
+
+    @BeforeMethod
+    @Override
+    public void beforeMethod() {
+        super.beforeMethod();
+        loginPage.openLoginPage();
+        loginPage.login("admin@admin.com", "12345");
+        adminCities.driverWaitForHomePage();
+        adminCities.openCitiesPage();
+    }
+
     @Test
     public void test1_Visits_the_admin_cities_page_and_list_cities() {
-        loginPage.openLoginPage();
 
-        loginPage.login("admin@admin.com", "12345");
-       driverWait.until(ExpectedConditions.urlContains("/home"));
-        adminCities.openCitiesPage();
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/admin/cities"));
         driver.manage().window().maximize();
@@ -22,90 +43,42 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(adminCities.getLogoutButton().isDisplayed());
     }
 
-
     @Test
     public void test2_Create_new_city() {
-        Faker faker = new Faker();
-        loginPage.openLoginPage();
-        loginPage.login("admin@admin.com", "12345");
-        driverWait.until(ExpectedConditions.urlContains("/home"));
-        adminCities.openCitiesPage();
 
-        adminCities.addNewCity(faker.address().city());
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
-        /*
-        Test prolazi ako se u expected napiše:
-         "Saved successfully\n" +
-                "CLOSE"
-         Test ne prolazi ako se napiše "Saved successfully"
-        */
-        //Assert.assertEquals("Saved successfully", adminCities.getMessage().getText());
+        adminCities.addNewCity(city);
+        adminCities.driverWaitForMessage();
         Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
-        //Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
-
     }
 
-    //todo Zameni Thread.sleep sa waiterom
-    @Test (dependsOnMethods = { "test2_Create_new_city" })
+    @Test
     public void test3_Edit_city() {
-        driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
-//        loginPage.openLoginPage();
-//        loginPage.login("admin@admin.com", "12345");
-//        driverWait.until(ExpectedConditions.urlContains("/home"));
-//        adminCities.openCitiesPage();
-        //driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"edit\"]/span/i")));
-        driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
         adminCities.editCity();
-
-        /*
-        Test prolazi ako se u expected napiše:
-        "Saved successfully\n" +
-                "CLOSE"
-         Test ne prolazi ako se napiše "Saved successfully"
-
-        */
-
-        //Assert.assertEquals("Saved successfully", adminCities.getMessage().getText());
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
-
+        adminCities.driverWaitForMessage();
         Assert.assertTrue(adminCities.getMessage().getText().contains("Saved successfully"));
-        //Assert.assertEquals("Saved successfully\n" + "CLOSE", adminCities.getMessage().getText());
     }
 
-    @Test (dependsOnMethods = { "test3_Edit_city", "test2_Create_new_city" })
+    @Test
     public void test4_Search_city() {
-        driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
-        //Ako se stavi "+-edited" onda test 4 fejluje jer ne može da pretražuje "+-" karaktere --- PRIJAVITI BUG
         adminCities.searchCity();
         Assert.assertEquals(adminCities.getEditedCityInTable().getText(), adminCities.getSearchedCityInTable().getText());
     }
 
-    @Test (dependsOnMethods = { "test3_Edit_city", "test2_Create_new_city", "test4_Search_city" })
+    @Test
     public void test5_Delete_city() {
-        driver.get("https://vue-demo.daniel-avellaneda.com/admin/cities");
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
-
         adminCities.searchCity();
-
-
-
         Assert.assertEquals(adminCities.getSearchText().getAttribute("value"), adminCities.getSearchedCityInTable().getText());
-
-
-
         adminCities.deleteCity();
-
-        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
-
-
+        adminCities.driverWaitForMessage();
         Assert.assertTrue(adminCities.getMessage2().getText().contains("Deleted successfully"));
-        //Assert.assertEquals("Deleted successfully", adminCities.getMessage2().getText());
-
     }
 
-
-
-
+    @AfterMethod
+    public void afterMethod() {
+        List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
+        if (!logoutButton.isEmpty()) {
+            logoutButton.get(0).click();
+        }
+    }
 
 }
