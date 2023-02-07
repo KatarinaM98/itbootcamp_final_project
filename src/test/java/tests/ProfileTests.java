@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.List;
 
@@ -33,11 +34,17 @@ public class ProfileTests extends BaseTest {
         gitHub = "https://github.com/" + faker.name().username().toLowerCase();
     }
 
+    @BeforeMethod
+    @Override
+    public void beforeMethod() {
+        super.beforeMethod();
+        homePage.login();
+        loginPage.login("admin@admin.com", "12345");
+        profilePage.openProfileChangePage();
+    }
 
     @Test
     public void test1_Edits_profile() {
-       loginPage.openLoginPage();
-       loginPage.login("admin@admin.com", "12345");
        profilePage.clearText();
         profilePage.changeProfile(newPassword, name, phone, country, city, twitter, gitHub);
         Assert.assertTrue(profilePage.getMessageSaved().getText().contains("Profile saved successfuly"));
@@ -49,7 +56,6 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(profilePage.getUrlGitHub().getAttribute("value"), gitHub);
 
     }
-
 
     @AfterMethod
     public void afterMethod() {
