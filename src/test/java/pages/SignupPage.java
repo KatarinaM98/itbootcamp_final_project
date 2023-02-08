@@ -40,6 +40,7 @@ public class SignupPage extends BasePage {
 
 
     public void openSignupPage() {
+
         signupPageButton.click();
         driverWait.until(ExpectedConditions.urlContains("/signup"));
     }

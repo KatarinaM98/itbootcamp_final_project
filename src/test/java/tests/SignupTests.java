@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.List;
 
 
@@ -22,7 +21,7 @@ public class SignupTests extends BaseTest {
     }
 
 
-    @Test
+    @Test (priority = 1)
     public void visitsTheSignupPage() {
         String actualLink = driver.getCurrentUrl();
         Assert.assertTrue(actualLink.contains("/signup"));
@@ -35,7 +34,7 @@ public class SignupTests extends BaseTest {
         String typeAttributePass = signupPage.getPassword().getAttribute("type");
         Assert.assertEquals(typeAttributePass, "password");
         String typeAttributePass2 = signupPage.getConfirmPassword().getAttribute("type");
-        Assert.assertEquals(typeAttributePass, "password");
+        Assert.assertEquals(typeAttributePass2, "password");
     }
 
     @Test
@@ -49,7 +48,7 @@ public class SignupTests extends BaseTest {
 
     @Test
     public void signup() {
-        signupPage.signup("John Doe", "johndoe1@gmail.com", "stolica", "stolica");
+        signupPage.signup("John Doe", "johndoe8@gmail.com", "stolica", "stolica");
         signupPage.driverWaitForVerificationMessage();
         Assert.assertEquals("IMPORTANT: Verify your account", homePage.getSignUpMessage().getText());
         signupPage.closeMessage();
@@ -58,7 +57,7 @@ public class SignupTests extends BaseTest {
 
     @AfterMethod
     public void afterMethod() {
-        List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]/span"));
+        List<WebElement> logoutButton = driver.findElements(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[1]"));
         if (!logoutButton.isEmpty()) {
             logoutButton.get(0).click();
         }
